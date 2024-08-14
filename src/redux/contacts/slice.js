@@ -4,7 +4,6 @@ import {
   deleteContactThunk,
   fetchContactsThunk,
 } from './operations';
-import { selectFilter } from '../filters/slice';
 
 const initialState = {
   items: [],
@@ -60,21 +59,3 @@ const slice = createSlice({
 });
 
 export const contactsReducer = slice.reducer;
-export const selectContacts = (state) => state.contacts.items;
-export const selectLoading = (state) => state.contacts.loading;
-export const selectError = (state) => state.contacts.error;
-
-export const selectFilteredContacts = createSelector(
-  [selectContacts, selectFilter],
-  (contacts, nameFilter) => {
-    const filterValue =
-      nameFilter && typeof nameFilter === 'string'
-        ? nameFilter.toLowerCase()
-        : '';
-
-    return contacts.filter(
-      (contact) =>
-        contact.name && contact.name.toLowerCase().includes(filterValue)
-    );
-  }
-);

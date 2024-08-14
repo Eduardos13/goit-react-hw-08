@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectFilteredContacts,
   selectLoading,
-} from '../../redux/contacts/slice';
+} from '../../redux/contacts/selectors';
 import Contact from '../Contact/Contact';
 import { fetchContactsThunk } from '../../redux/contacts/operations';
 
