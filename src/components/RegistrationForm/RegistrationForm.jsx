@@ -1,9 +1,10 @@
 import React from 'react';
 import s from './RegistrationForm.module.css';
 import { Field, Form, Formik } from 'formik';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerThunk } from '../../redux/auth/operations';
+import { selectIsLogedIn } from '../../redux/auth/selectors';
 
 const RegistrationForm = () => {
   const initialValues = {
@@ -19,18 +20,38 @@ const RegistrationForm = () => {
     options.resetForm();
   };
 
+  const isLogedIn = useSelector(selectIsLogedIn);
+
+  if (isLogedIn) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form>
-          <Field name="name" placeholder="Enter your name"></Field>
-          <Field name="email" placeholder="Enter your email"></Field>
-          <Field
-            name="password"
-            type="password"
-            placeholder="Enter tour password"
-          ></Field>
-          <button type="submit">Login</button>
+        <Form className={s.formWrapper}>
+          <h2>Please, register here</h2>
+          <div className={s.inputList}>
+            <Field
+              className={s.input}
+              name="name"
+              placeholder="Enter your name"
+            />
+            <Field
+              className={s.input}
+              name="email"
+              placeholder="Enter your email"
+            />
+            <Field
+              className={s.input}
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+            />
+          </div>
+          <button className={s.loginBtn} type="submit">
+            Login
+          </button>
 
           <p>
             Already have an account? <Link to="/login">Sign up</Link>

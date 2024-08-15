@@ -34,7 +34,12 @@ const AppBar = () => {
 
         {isLogedIn && (
           <li>
-            <button onClick={() => dispatch(logoutThunk())}>LogOut</button>
+            <button
+              className={s.logoutBtn}
+              onClick={() => dispatch(logoutThunk())}
+            >
+              LogOut
+            </button>
           </li>
         )}
       </ul>
