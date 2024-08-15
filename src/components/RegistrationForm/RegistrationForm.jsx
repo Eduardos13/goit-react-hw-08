@@ -6,18 +6,19 @@ import { useDispatch } from 'react-redux';
 import { registerThunk } from '../../redux/auth/operations';
 
 const RegistrationForm = () => {
-  const disputch = useDispatch();
   const initialValues = {
     name: '',
     email: '',
     password: '',
   };
 
+  const disputch = useDispatch();
+
   const handleSubmit = (values, options) => {
-    console.log(values);
     disputch(registerThunk(values));
     options.resetForm();
   };
+
   return (
     <div>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
