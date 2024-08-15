@@ -1,11 +1,13 @@
 import React from 'react';
 import s from './LoginForm.module.css';
 import { Field, Form, Formik } from 'formik';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk } from '../../redux/auth/operations';
+import { selectIsLogedIn } from '../../redux/auth/selectors';
 
 const LoginForm = () => {
+  const isLogedIn = useSelector(selectIsLogedIn);
   const initialValues = {
     email: '',
     password: '',
@@ -17,6 +19,10 @@ const LoginForm = () => {
     disputch(loginThunk(values));
     options.resetForm();
   };
+
+  if (isLogedIn) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div>

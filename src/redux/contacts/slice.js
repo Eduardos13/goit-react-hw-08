@@ -4,6 +4,7 @@ import {
   deleteContactThunk,
   fetchContactsThunk,
 } from './operations';
+import { logoutThunk } from '../auth/operations';
 
 const initialState = {
   items: [],
@@ -54,6 +55,9 @@ const slice = createSlice({
       .addCase(deleteContactThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(logoutThunk.fulfilled, () => {
+        return initialState;
       });
   },
 });
