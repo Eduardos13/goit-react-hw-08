@@ -18,9 +18,11 @@ const AppBar = () => {
         <li className={s.linksItem}>
           <NavLink to="/">Home</NavLink>
         </li>
-        <li className={s.linksItem}>
-          <NavLink to="/contacts">Contacts</NavLink>
-        </li>
+        {isLogedIn && (
+          <li className={s.linksItem}>
+            <NavLink to="/contacts">Contacts</NavLink>
+          </li>
+        )}
         {!isLogedIn && (
           <>
             <li className={s.linksItem}>

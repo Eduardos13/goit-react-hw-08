@@ -8,6 +8,8 @@ import RegistrationForm from '../RegistrationForm/RegistrationForm';
 import ContactsPage from '../../pages/ContactsPage/ContactsPage';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import { refreshUserThunk } from '../../redux/auth/operations';
+import { PrivateRoute } from '../../Rotes/PrivateRoute';
+import { PublicRoute } from '../../Rotes/PublicRoute';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,11 +23,32 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <ContactsPage />
+              </PrivateRoute>
+            }
+          />
         </Route>
 
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegistrationForm />} />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <LoginForm />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <RegistrationForm />
+            </PublicRoute>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
