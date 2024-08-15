@@ -2,8 +2,11 @@ import React from 'react';
 import s from './RegistrationForm.module.css';
 import { Field, Form, Formik } from 'formik';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { registerThunk } from '../../redux/auth/operations';
 
 const RegistrationForm = () => {
+  const disputch = useDispatch();
   const initialValues = {
     name: '',
     email: '',
@@ -12,6 +15,7 @@ const RegistrationForm = () => {
 
   const handleSubmit = (values, options) => {
     console.log(values);
+    disputch(registerThunk(values));
     options.resetForm();
   };
   return (
