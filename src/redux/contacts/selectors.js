@@ -15,7 +15,8 @@ export const selectFilteredContacts = createSelector(
 
     return contacts.filter(
       (contact) =>
-        contact.name && contact.name.toLowerCase().includes(filterValue)
+        (contact.name && contact.name.toLowerCase().includes(filterValue)) ||
+        (contact.number && contact.number.includes(filterValue))
     );
   }
 );

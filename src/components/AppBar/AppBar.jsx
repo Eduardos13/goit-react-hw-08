@@ -11,7 +11,7 @@ const AppBar = () => {
   const dispatch = useDispatch();
   return (
     <header className={s.header}>
-      <h2 className={s.mainTitle}>Auth</h2>
+      <h2 className={s.mainTitle}>ContactMe</h2>
       {isLogedIn && <h3 className={s.userName}>Welcome back, {user.name}</h3>}
       {!isLogedIn && <h3 className={s.userName}>Welcome</h3>}
       <ul className={s.linksList}>
