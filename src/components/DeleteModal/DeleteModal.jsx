@@ -21,23 +21,27 @@ const DeleteModal = ({ isOpen, onClose, item }) => {
                 <RxCross2 />
               </button>
               <h2>Are you sure you want to delete this contact?</h2>
-              <button
-                onClick={() => {
-                  if (item && item.id) {
-                    dispatch(deleteContactThunk(item.id));
+              <div className={s.buttons}>
+                <button
+                  className={s.modalBtn}
+                  onClick={() => {
+                    if (item && item.id) {
+                      dispatch(deleteContactThunk(item.id));
+                      onClose();
+                    }
+                  }}
+                >
+                  Yes
+                </button>
+                <button
+                  className={s.modalBtn}
+                  onClick={() => {
                     onClose();
-                  }
-                }}
-              >
-                Yes
-              </button>
-              <button
-                onClick={() => {
-                  onClose();
-                }}
-              >
-                No
-              </button>
+                  }}
+                >
+                  No
+                </button>
+              </div>
             </div>
           </div>
         </div>
