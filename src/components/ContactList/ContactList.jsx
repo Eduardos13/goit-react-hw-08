@@ -17,18 +17,20 @@ const ContactList = () => {
   }, [dispatch]);
 
   return (
-    <ul className={s.contactsList}>
-      {contacts.length ? (
-        contacts.map((item) => (
-          <li key={item.id}>
-            <Contact item={item} />
-          </li>
-        ))
-      ) : (
-        <h2>No contacts added</h2>
-      )}
-      {loading && <h2>Loading...</h2>}
-    </ul>
+    <>
+      <ul className={s.contactsList}>
+        {contacts.length ? (
+          contacts.map((item) => (
+            <li key={item.id}>
+              <Contact item={item} />
+            </li>
+          ))
+        ) : (
+          <h2>No contacts added</h2>
+        )}
+      </ul>
+      <div className={s.loading}>{loading && <h2>Loading...</h2>}</div>
+    </>
   );
 };
 
