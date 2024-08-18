@@ -3,9 +3,12 @@ import s from './DeleteModal.module.css';
 import { RxCross2 } from 'react-icons/rx';
 import { useDispatch } from 'react-redux';
 import { deleteContactThunk } from '../../redux/contacts/operations';
+import { Toaster, toast } from 'react-hot-toast';
 
 const DeleteModal = ({ isOpen, onClose, item }) => {
   const dispatch = useDispatch();
+  const deleteNotify = () =>
+    toast.success('Contact deleted from your contacts book');
   return (
     <>
       {isOpen && (
@@ -28,6 +31,7 @@ const DeleteModal = ({ isOpen, onClose, item }) => {
                     if (item && item.id) {
                       dispatch(deleteContactThunk(item.id));
                       onClose();
+                      deleteNotify();
                     }
                   }}
                 >
@@ -41,6 +45,7 @@ const DeleteModal = ({ isOpen, onClose, item }) => {
                 >
                   No
                 </button>
+                <Toaster position="top-center" reverseOrder={false} />
               </div>
             </div>
           </div>
