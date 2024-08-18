@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './Contact.module.css';
 import { useDispatch } from 'react-redux';
 import { RxCross2 } from 'react-icons/rx';
-import { deleteContactThunk } from '../../redux/contacts/operations';
+import DeleteModal from '../DeleteModal/DeleteModal';
 
 const Contact = ({ item }) => {
-  const dispatch = useDispatch();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   return (
     <div className={s.contactWraper}>
       <div className={s.infoWrapper}>
@@ -14,10 +15,18 @@ const Contact = ({ item }) => {
       </div>
       <button
         className={s.deleteBtn}
-        onClick={() => dispatch(deleteContactThunk(item.id))}
+        onClick={() => {
+          setModalIsOpen(true);
+        }}
       >
         <RxCross2 />
       </button>
+
+      <DeleteModal
+        isOpen={modalIsOpen}
+        onClose={() => setModalIsOpen(false)}
+        item={item}
+      />
     </div>
   );
 };
