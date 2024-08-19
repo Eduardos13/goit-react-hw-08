@@ -1,10 +1,17 @@
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
   background-color: aquamarine;
   color: white;
   font-size: 26px;
+  min-width: 1280px;
+  margin: 0 auto;
+}
+
+.mainTitle {
+  margin-right: 20px;
 }
 
 .linksList {
@@ -18,16 +25,5 @@
 }
 
 .linksItem a:hover {
-  color: blanchedalmond;
-}
-
-.logoutBtn {
-  border: none;
-  background-color: inherit;
-  color: white;
-}
-
-.logoutBtn:hover {
-  cursor: pointer;
   color: blanchedalmond;
 }
