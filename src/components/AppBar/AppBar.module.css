@@ -9,21 +9,3 @@
   min-width: 1280px;
   margin: 0 auto;
 }
-
-.mainTitle {
-  margin-right: 20px;
-}
-
-.linksList {
-  display: flex;
-  gap: 20px;
-}
-
-.linksItem a {
-  text-decoration: none;
-  color: white;
-}
-
-.linksItem a:hover {
-  color: blanchedalmond;
-}
